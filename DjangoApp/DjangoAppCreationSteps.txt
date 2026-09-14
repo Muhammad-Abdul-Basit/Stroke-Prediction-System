@@ -26,3 +26,5 @@ If used other database, like mysql then go to settings.py and add database info.
 6. Run
 python manage.py runserver 9000 
 go to browser and paste in URL http://127.0.0.1:9000/
+
+7. Update urls.py for whole project, not the app urls. app/urls.py will be update, whenever a page redirected in views.py

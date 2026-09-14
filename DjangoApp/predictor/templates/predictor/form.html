@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Prediction</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background-color: #F4F8FB;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 900px;
+        background-color: #FFFFFF;
+        padding: 30px 35px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(18, 59, 93, 0.10);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 8px;
+        color: #123B5D;
+    }
+
+    .description {
+        text-align: center;
+        color: #64748B;
+        margin-bottom: 25px;
+    }
+
+    /* Two-column form */
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px 25px;
+    }
+
+    .form-group {
+        margin-bottom: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: bold;
+        color: #334155;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #CBD5E1;
+        border-radius: 6px;
+        font-size: 15px;
+        background-color: #FFFFFF;
+        color: #334155;
+    }
+
+    input:focus,
+    select:focus {
+        outline: none;
+        border-color: #2563EB;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.10);
+    }
+
+    input[type="number"] {
+        appearance: textfield;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 6px;
+        background-color: #2563EB;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 25px;
+    }
+
+    .submit-btn:hover {
+        background-color: #1D4ED8;
+    }
+
+    /* On smaller screens, use one column */
+    @media (max-width: 650px) {
+        .container {
+            padding: 25px 20px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Stroke Prediction</h1>
+
+<p class="description">
+    Enter the patient's information below.
+</p>
+
+<form method="POST">
+
+<div class="form-grid">
+
+    <!-- Age -->
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input
+            type="number"
+            id="age"
+            name="age"
+            step="1"
+            min="12"
+            max="99"
+            required
+        >
+    </div>
+
+    <!-- Hypertension -->
+    <div class="form-group">
+        <label for="hypertension">Hypertension</label>
+
+        <select id="hypertension" name="hypertension" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <!-- Heart Disease -->
+    <div class="form-group">
+        <label for="heart_disease">Heart Disease</label>
+
+        <select id="heart_disease" name="heart_disease" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <!-- Average Glucose -->
+    <div class="form-group">
+        <label for="avg_glucose">Average Glucose Level</label>
+
+        <input
+            type="number"
+            id="avg_glucose"
+            name="avg_glucose"
+            step="any"
+            min="0"
+            required
+        >
+    </div>
+
+    <!-- BMI -->
+    <div class="form-group">
+        <label for="bmi">BMI</label>
+
+        <input
+            type="number"
+            id="bmi"
+            name="bmi"
+            step="any"
+            min="0"
+            required
+        >
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+        <label for="gender_map">Gender</label>
+
+        <select id="gender_map" name="gender_map" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+            <option value="2">Other</option>
+        </select>
+    </div>
+
+    <!-- SES -->
+    <div class="form-group">
+        <label for="ses_map">Socioeconomic Status (SES)</label>
+
+        <select id="ses_map" name="ses_map" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Low</option>
+            <option value="1">Medium</option>
+            <option value="2">High</option>
+        </select>
+    </div>
+
+    <!-- Smoking Status -->
+    <div class="form-group">
+        <label for="smoking_status_map">Smoking Status</label>
+
+        <select id="smoking_status_map" name="smoking_status_map" required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Never</option>
+            <option value="1">Former</option>
+            <option value="2">Current</option>
+        </select>
+    </div>
+
+</div>
+
+<!-- Submit -->
+<button type="submit" class="submit-btn">
+    Predict Stroke
+</button>
+
+
+</form>
+
+</div>
+
+</body>
+</html>
