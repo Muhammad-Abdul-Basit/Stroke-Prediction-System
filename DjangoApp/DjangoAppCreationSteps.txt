@@ -1,0 +1,28 @@
+1.Install django and other required Libraries.
+
+2.Go to the location, where you want to create project folder and run command:
+python -m django startproject StrokePrediction
+
+3. Create the Django app, run command "This will create app"
+python manage.py startapp predictor
+
+4. Register the app by going to Project folder file settings.py and add the app
+DjangoApp\StrokePrediction\settings.py and add like
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'predictor', #This is the app that we created inside django project
+]
+
+5. If used slqlite, then run cmd:
+python manage.py migrate
+If used other database, like mysql then go to settings.py and add database info.
+
+6. Run
+python manage.py runserver 9000 
+go to browser and paste in URL http://127.0.0.1:9000/
