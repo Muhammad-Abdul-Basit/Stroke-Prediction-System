@@ -44,7 +44,6 @@
         margin-bottom: 25px;
     }
 
-    /* Two-column form */
     .form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -101,7 +100,6 @@
         background-color: #1D4ED8;
     }
 
-    /* On smaller screens, use one column */
     @media (max-width: 650px) {
         .container {
             padding: 25px 20px;
@@ -126,8 +124,33 @@
 </p>
 
 <form method="POST">
+    {% csrf_token %}
 
 <div class="form-grid">
+
+    <!-- User Name -->
+    <div class="form-group">
+        <label for="user_name">User Name</label>
+        <input
+            type="text"
+            id="user_name"
+            name="user_name"
+            placeholder="Enter user name"
+            required
+        >
+    </div>
+
+    <!-- CNIC -->
+    <div class="form-group">
+        <label for="cnic">CNIC</label>
+        <input
+            type="text"
+            id="cnic"
+            name="cnic"
+            placeholder="Enter CNIC"
+            required
+        >
+    </div>
 
     <!-- Age -->
     <div class="form-group">
@@ -231,11 +254,9 @@
 
 </div>
 
-<!-- Submit -->
 <button type="submit" class="submit-btn">
     Predict Stroke
 </button>
-
 
 </form>
 

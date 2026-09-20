@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stroke Prediction Report</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F4F8FB;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .report-container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(18, 59, 93, 0.10);
+            overflow: hidden;
+        }
+
+        .report-header {
+            background-color: #123B5D;
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .report-header h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .report-header p {
+            font-size: 14px;
+            color: #DCE8F2;
+        }
+
+        .report-body {
+            padding: 35px;
+        }
+
+        .section-title {
+            color: #123B5D;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 10px;
+        }
+
+        .patient-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            padding: 15px;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+        }
+
+        .info-label {
+            display: block;
+            color: #64748B;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            color: #334155;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+        }
+
+        .result-label {
+            font-size: 14px;
+            color: #64748B;
+            margin-bottom: 10px;
+        }
+
+        .prediction-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .result-message {
+            font-size: 16px;
+            color: #475569;
+        }
+
+        .stroke {
+            color: #DC2626;
+        }
+
+        .no-stroke {
+            color: #16A34A;
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #F4F8FB;
+            border-left: 4px solid #2563EB;
+            border-radius: 6px;
+        }
+
+        .info-box p {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #64748B;
+            line-height: 1.5;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #2563EB;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background-color: #1D4ED8;
+        }
+
+        @media (max-width: 650px) {
+            .report-body {
+                padding: 25px 20px;
+            }
+
+            .patient-info {
+                grid-template-columns: 1fr;
+            }
+
+            .report-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="report-container">
+
+    <div class="report-header">
+        <h1>Stroke Prediction Report</h1>
+        <p>Machine Learning Prediction Result</p>
+    </div>
+
+    <div class="report-body">
+
+        <!-- Patient Information -->
+        <div class="section-title">
+            Patient Information
+        </div>
+
+        <div class="patient-info">
+
+            <div class="info-item">
+                <span class="info-label">User Name</span>
+                <span class="info-value">{{ user_name }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">CNIC</span>
+                <span class="info-value">{{ cnic }}</span>
+            </div>
+
+        </div>
+
+       <!-- Prediction Result -->
+<div class="section-title">
+    Prediction Result
+</div>
+
+{% if prediction == 1 %}
+
+    <div class="result-box stroke-result">
+
+        <div class="result-icon">
+            !
+        </div>
+
+        <p class="result-label">
+            Prediction Result
+        </p>
+
+        <h2 class="result-message stroke-text">
+            POSSIBLE STROKE
+        </h2>
+
+        <p class="result-description">
+            The machine learning model Predicts a Possible Stroke.
+        </p>
+
+    </div>
+
+{% elif prediction == 0 %}
+
+    <div class="result-box no-stroke-result">
+
+        <div class="result-icon">
+            ✓
+        </div>
+
+        <p class="result-label">
+            Prediction Result
+        </p>
+
+        <h2 class="result-message no-stroke-text">
+            NO STROKE DETECTED
+        </h2>
+
+        <p class="result-description">
+            The machine learning model Predicts NO Stroke.
+        </p>
+
+    </div>
+
+{% endif %}
+
+        <div class="info-box">
+            <p>
+                This result is generated by a machine learning model
+                based on the information provided. It is intended for
+                predictive purposes only and should not be considered
+                a medical diagnosis.
+            </p>
+        </div>
+
+        <div class="footer">
+
+            <p>
+                Stroke Prediction System
+            </p>
+
+            <p>
+                Please consult a qualified healthcare professional
+                for medical advice or further evaluation.
+            </p>
+
+            <a href="/" class="back-btn">
+                New Prediction
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

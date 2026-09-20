@@ -1,27 +1,41 @@
-from django.conf import settings
 import os
 import joblib
-import numpy as np
 import logging
 
-logger=logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
-#Getting path for each model of ML
-MODEL_PATH =os.path.join(settings.BASE_DIR, "best_model_SVM.pkl")
-SCALER_PATH=os.path.join(settings.BASE_DIR, "scaler_SVM.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-#Loading model file of ML
+MODEL_PATH = os.path.join(BASE_DIR, "best_model_SVM.pkl")
+SCALER_PATH = os.path.join(BASE_DIR, "scaler_SVM.pkl")
+
+
 try:
-    model=joblib.load(MODEL_PATH)
-    logger.info(f"Model file is loading from {MODEL_PATH}")
+    model = joblib.load(MODEL_PATH)
+    logger.info(f"Model loaded from {MODEL_PATH}")
 except Exception as e:
-    logger.warning(f"Model file is not loading {e}")
-    model=None
+    logger.warning(f"Model could not be loaded: {e}")
+    model = None
 
-#Loading scaler file of ML
+
 try:
-    scaler=joblib.load(SCALER_PATH)
-    logger.info(f"Scaler file is loading from {SCALER_PATH}")
+    scaler = joblib.load(SCALER_PATH)
+    logger.info(f"Scaler loaded from {SCALER_PATH}")
 except Exception as e:
-    scaler=None
-    logger.warning(f"Scaler file is not loading {e}")
+    logger.warning(f"Scaler could not be loaded: {e}")
+    scaler = None
+
+
+def predict_stroke(data):
+
+    if model is None:
+        raise RuntimeError("ML model is not loaded.")
+
+    if scaler is None:
+        raise RuntimeError("Scaler is not loaded.")
+
+    scaled_data = scaler.transform(data)
+
+    prediction = model.predict(scaled_data)
+
+    return int(prediction[0])
